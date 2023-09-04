@@ -36,6 +36,7 @@ do
     result=$(curl -s --user-agent "$ua" "${baseurl}/${!user}")
     title=$(echo "$result" | grep "/title" | awk -F ">" '{print $2}' | awk -F " " '{print $1}' | sed 's/ //g')
     Days=$(echo "$result" | grep "參賽天數" | awk -F " " '{print $2}')
+
     if [ "$Days" == "$daysinironman" ]
     then
         printf "使用者: %-12s 參賽天數: ${grn}%-3s${end} 主題: ${yel}%-45s${end}\\n" "$user" "$Days" "$title"
@@ -43,4 +44,5 @@ do
         printf "使用者: %-12s 參賽天數: ${red}%-3s${end} 主題: ${yel}%-45s${end}\\n" "$user" "$Days" "$title"
     fi
     sleep 0.5
+
 done
